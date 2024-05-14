@@ -15,9 +15,9 @@ The Powerwall itself permits a level of control via the app, however it is desig
 
 It is important to note that this method of control does not make the Powerwall do anything it is not allowed to do. Any restrictions imposed by Tesla will remain in place. For example if you are unable to export to the grid, then you will still be unable to export to the grid.
 
-### Operation modes - Scripts
+### Operation modes
 
-To achieve this, I have developed a list of scripts that expand what the Tesla app provides in terms of operation modes. There are individual scripts that setup the Powerwall up to operate as follows:
+To achieve this, I have developed a list of **scripts** that expand what the Tesla app provides in terms of operation modes. There are individual scripts that setup the Powerwall up to operate as follows:
 
 * Force grid charge (1.8kW or 5kW) - battery charges from the grid
 * Hold charge - battery will not discharge, but it may charge
@@ -27,6 +27,16 @@ To achieve this, I have developed a list of scripts that expand what the Tesla a
 
 Additionally to the scripts above, a helper selector is used to set and query which operational mode the Powerwall has been set to.
 
-### Toggle controls
+### Toggle controls - input_boolean
 
-(...)
+These are **input_boolean** helper entities.
+
+* Charge Rate Slow - sets the battery to charge at 1.8kW from the grid
+* Battery Export Charge - lets the battery dump charge onto the grid
+* Export Solar Surplus - prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption)
+* Force Full Charge - ensures that battery charges fully
+
+### Schedules
+
+### Automations
+

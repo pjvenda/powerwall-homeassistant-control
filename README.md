@@ -21,11 +21,11 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 
 | Mode | Description | HA name | Dependencies/control |
 |------|-------------|---------|----------------------|
-| Force grid charge | Battery charges from the grid (1.8kW or 5kW) | | |
-| Hold charge | Battery will not discharge, but it may charge | | |
-| Force export\* | Battery dumps its charge onto the grid | | input_boolean.powerwall_battery_export_charge |
-| Time based solar | Same as 'Time based control' on the app, with grid export disabled | | |
-| Self powered | default mode, grid export disabled | | |
+| Force grid charge | Battery charges from the grid (1.8kW or 5kW) | `script.powerwall_mode_grid_charge` | `input_boolean.powerwall_battery_charge_rate_slow` `input_boolean.powerwall_force_full_charge` |
+| Hold charge | Battery will not discharge, but it may charge | `script.powerwall_mode_no_discharge` | |
+| Force export\* | Battery dumps its charge onto the grid | `script.powerwall_mode_force_export` | |
+| Time based solar | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | |
+| Self powered | default mode, grid export disabled | `script.powerwall_mode_default` | |
 
 Additionally to the scripts above, a helper selector is used to set and query which operational mode the Powerwall has been set to.
 
@@ -35,10 +35,10 @@ These are **input_boolean** helper entities.
 
 | Toggle | Description | HA name | Affects |
 |--------|-------------|---------|---------|
-| Charge Rate Slow | sets the battery to charge at 1.8kW from the grid | `input_boolean.powerwall_battery_charge_rate_slow` | |
+| Charge Rate Slow | sets the battery to charge at 1.8kW from the grid | `input_boolean.powerwall_battery_charge_rate_slow` | `script.powerwall_mode_grid_charge` |
 | Battery Export Charge | lets the battery dump charge onto the grid | `input_boolean.powerwall_battery_export_charge` | |
 | Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) | `input_boolean.powerwall_export_solar_surplus` | |
-| Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_battery_export_charge` | |
+| Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_force_full_charge` | `script.powerwall_mode_grid_charge` |
 
 ### Schedules
 

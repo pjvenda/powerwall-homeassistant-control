@@ -17,7 +17,7 @@ It is important to note that this method of control does not make the Powerwall 
 
 ### Operation modes
 
-To achieve this, I have developed a list of **scripts** that expand what the Tesla app provides in terms of operation modes. There are individual scripts that setup the Powerwall up to operate as follows:
+To achieve this, I have developed a list of **scripts** that expand what the Tesla app provides in terms of operation modes. The scripts can operate There are individual scripts that setup the Powerwall up to operate as follows:
 
 #### Force grid charge
 
@@ -81,7 +81,9 @@ Source: [Self powered](scripts/self_powered.yaml)
 | `input_number.powerwall_battery_backup_reserve_operation` | Sets backup reserve to preset value whenever selecting this mode of operation |
 
 
-### Toggle controls - input_boolean
+### Controls
+
+#### Toggle
 
 These are **input_boolean** helper entities.
 
@@ -92,17 +94,29 @@ These are **input_boolean** helper entities.
 | Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) | `input_boolean.powerwall_export_solar_surplus` | |
 | Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_force_full_charge` | `script.powerwall_mode_grid_charge` |
 
-### Helper controls - input_number
+#### Numeric
 
 | Control | Description | HA name | Affects |
 |---------|-------------|---------|---------|
 | Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter | `input_number.powerwall_battery_backup_reserve_operation` | `script.powerwall_mode_default` `script.powerwall_mode_time_based_solar` |
 
-### Schedules
+#### Selector
+
+This selector helper entity can be used to query which custom mode the Powerwall is currently set to, but also, changing it triggers the [`automation.powerwall_custom_mode_selector_control`](automations/custom_mode_selector.yaml) automation, which calls the script corresponding to the selected mode.
+
+| Control | Description | HA name | Affects |
+|---------|-------------|---------|---------|
+| Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts | `input_select.powerwall_battery_custom_modes` | `automation.powerwall_custom_mode_selector_control` |
+
+#### Schedules
 
 Energy providers will often provide time-dependent tariffs, usually in the shape of two time periods where one is higher demand so more expensive and the other is lower demand so cheaper. In other cases, providers will bill dynamically throughout the day, in half-hour periods, depending on many factors that influence the cost and carbon impact of buying, selling and supplying energy on the network.
 
 Therefore, manually set schedules are required for automations, which is my case. Your automations may require other inputs for taking decisions.
+
+
+`schedule.octopus_low_rate_schedule`
+
 
 ### Automations
 

@@ -30,10 +30,10 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 
 ### Control knobs
 
-More detailed info can be found in the wiki [Operation modes](../../wiki/Custom-operation-modes).
+More detailed info can be found in the wiki [Controls](../../wiki/Controls).
 
 | Knob | Description |
-|--------|-------------|---------|---------|
+|--------|-------------|
 | Charge Rate Slow | sets the battery to charge at 1.8kW from the grid |
 | Battery Export Charge | lets the battery dump charge onto the grid |
 | Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) |

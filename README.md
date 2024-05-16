@@ -19,16 +19,66 @@ It is important to note that this method of control does not make the Powerwall 
 
 To achieve this, I have developed a list of **scripts** that expand what the Tesla app provides in terms of operation modes. There are individual scripts that setup the Powerwall up to operate as follows:
 
-| Mode | Description | HA name | Dependencies/control | 
-|------|-------------|---------|----------------------|
-| [Force grid charge](scripts/grid_charge.yaml) | Battery charges from the grid (1.8kW or 5kW) | `script.powerwall_mode_grid_charge` | `input_boolean.powerwall_battery_charge_rate_slow` `input_boolean.powerwall_force_full_charge` |
-| [Hold charge](scripts/hold_charge.yaml) | Battery will not discharge, but it may charge | `script.powerwall_mode_no_discharge` | |
-| [Force export\*](scripts/force_export.yaml) | Battery dumps its charge onto the grid | `script.powerwall_mode_force_export` | |
-| [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | `input_number.powerwall_battery_backup_reserve_operation` |
-| [Self powered](scripts/self_powered.yaml) | default mode, grid export disabled | `script.powerwall_mode_default` | |
+#### Force grid charge
 
-Additionally to the scripts above, a helper selector is used to set and query which operational mode the Powerwall has been set to.
+Source: [Force grid charge](scripts/grid_charge.yaml)
 
+| HA name | Description |
+|---------|-------------|
+| `script.powerwall_mode_grid_charge` | Battery charges from the grid at 1.8kW or 5kW |
+
+| Dependencies / Control | Description |
+|------------------------|-------------|
+| `input_boolean.powerwall_battery_charge_rate_slow` | Set to true allows battery to charge at 1.8kW. Otherwise it charges at 5kW |
+
+#### Hold charge
+
+Source: [Hold charge](scripts/hold_charge.yaml)
+
+| HA name | Description |
+|---------|-------------|
+| `script.powerwall_mode_no_discharge` | Battery will not discharge, but it may charge |
+
+| Dependencies / Control | Description |
+|------------------------|-------------|
+| | |
+
+#### Force export\*
+
+Source: [Force export](scripts/force_export.yaml)
+
+| HA name | Description |
+|---------|-------------|
+| `script.powerwall_mode_force_export` | Battery dumps its charge onto the grid |
+
+| Dependencies / Control | Description |
+|------------------------|-------------|
+| | |
+
+#### Time based solar
+
+Source: [Time based solar](scripts/time_based_solar.yaml)
+
+| HA name | Description |
+|---------|-------------|
+| `script.powerwall_mode_time_based_solar` | Same as 'Time based control' on the app, with grid export disabled |
+
+| Dependencies / Control | Description |
+|------------------------|-------------|
+| `input_number.powerwall_battery_backup_reserve_operation` | Sets backup reserve to preset value whenever selecting this mode of operation |
+
+
+#### Self Powered
+
+Source: [Self powered](scripts/self_powered.yaml)
+
+| HA name | Description |
+|---------|-------------|
+| `script.powerwall_mode_default` | default mode, grid export disabled |
+
+| Dependencies / Control | Description |
+|------------------------|-------------|
+| `input_number.powerwall_battery_backup_reserve_operation` | Sets backup reserve to preset value whenever selecting this mode of operation |
 
 
 ### Toggle controls - input_boolean

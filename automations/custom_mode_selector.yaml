@@ -1,0 +1,45 @@
+alias: Powerwall custom mode selector control
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - input_select.powerwall_battery_custom_modes
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Self-Powered
+        sequence:
+          - service: script.powerwall_mode_default
+            data: {}
+      - conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Grid Charge
+        sequence:
+          - service: script.powerwall_mode_grid_charge
+            data: {}
+      - conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Force Export
+        sequence:
+          - service: script.powerwall_mode_force_export
+            data: {}
+      - conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: No discharge
+        sequence:
+          - service: script.powerwall_mode_no_discharge
+            data: {}
+      - conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Time based solar
+        sequence:
+          - service: script.powerwall_mode_time_based_solar_2
+            data: {}
+mode: single

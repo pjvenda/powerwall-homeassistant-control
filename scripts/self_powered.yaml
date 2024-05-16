@@ -2,10 +2,14 @@ alias: Powerwall Mode Self-Powered
 sequence:
   - service: number.set_value
     data:
-      value: "10"
+      value: >-
+        {{ states("input_number.powerwall_battery_backup_reserve_operation")|int
+        }}
     target:
       entity_id: number.powerwall_cloud_backup_reserve
-    alias: Set reserve to 10% (static)
+    alias: >-
+      Set reserve to helper value
+      input_number.powerwall_battery_backup_reserve_operation
   - service: select.select_option
     data:
       option: Self-Powered

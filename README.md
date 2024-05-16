@@ -30,40 +30,13 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 
 ### Control knobs
 
-#### Toggle
+More detailed info can be found in the wiki [Operation modes](../../wiki/Custom-operation-modes).
 
-These are **input_boolean** helper entities.
-
-| Toggle | Description | HA name | Affects |
+| Knob | Description |
 |--------|-------------|---------|---------|
-| Charge Rate Slow | sets the battery to charge at 1.8kW from the grid | `input_boolean.powerwall_battery_charge_rate_slow` | `script.powerwall_mode_grid_charge` |
-| Battery Export Charge | lets the battery dump charge onto the grid | `input_boolean.powerwall_battery_export_charge` | `script.powerwall_mode_time_based_solar` |
-| Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) | `input_boolean.powerwall_export_solar_surplus` | |
-| Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_force_full_charge` | `script.powerwall_mode_grid_charge` |
-
-#### Numeric
-
-| Control | Description | HA name | Affects |
-|---------|-------------|---------|---------|
-| Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter | `input_number.powerwall_battery_backup_reserve_operation` | `script.powerwall_mode_default` `script.powerwall_mode_time_based_solar` |
-
-#### Selector
-
-This selector helper entity can be used to query which custom mode the Powerwall is currently set to, but also, changing it triggers the [`automation.powerwall_custom_mode_selector_control`](automations/custom_mode_selector.yaml) automation, which calls the script corresponding to the selected mode.
-
-| Control | Description | HA name | Affects |
-|---------|-------------|---------|---------|
-| Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts | `input_select.powerwall_battery_custom_modes` | `automation.powerwall_custom_mode_selector_control` |
-
-#### Schedules
-
-Energy providers will often provide time-dependent tariffs, usually in the shape of two time periods where one is higher demand so more expensive and the other is lower demand so cheaper. In other cases, providers will bill dynamically throughout the day, in half-hour periods, depending on many factors that influence the cost and carbon impact of buying, selling and supplying energy on the network.
-
-Therefore, manually set schedules are required for automations, which is my case. Your automations may require other inputs for taking decisions.
-
-
-`schedule.octopus_low_rate_schedule`
-
-
-### Automations
-
+| Charge Rate Slow | sets the battery to charge at 1.8kW from the grid |
+| Battery Export Charge | lets the battery dump charge onto the grid |
+| Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) |
+| Force Full Charge | ensures that battery charges fully |
+| Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter |
+| Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts |

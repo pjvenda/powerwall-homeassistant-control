@@ -37,7 +37,9 @@ More detailed info can be found in the wiki [Controls](../../wiki/Controls).
 |--------|-------------|
 | Charge Rate Slow | sets the battery to charge at 1.8kW from the grid |
 | Battery Export Charge | lets the battery dump charge onto the grid |
-| Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) |
+| Export Solar Surplus* | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) |
 | Force Full Charge | ensures that battery charges fully |
 | Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter |
 | Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts |
+
+(*) Just like the 'Force Export' mode, so does the 'Export Solar Surplus' control rely on the 'Utility Rate Plan' being setup with a higher 'sell price' than the 'buy price'. Otherwise the Powerwall will prioritise consuming the solar power generated rather than exporting it.

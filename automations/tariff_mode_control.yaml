@@ -1,0 +1,43 @@
+alias: Octopus tariff battery mode control
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - schedule.octopus_low_rate_schedule
+    to: "on"
+    id: octopus-low-rate-on
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    alias: Provider tariff is cheap
+  - platform: state
+    entity_id:
+      - schedule.octopus_low_rate_schedule
+    to: "off"
+    id: octopus-low-rate-off
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    alias: Provider tariff is expensive
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            alias: Set powerwall to custom 'Force Grid Charge' mode
+            id:
+              - octopus-low-rate-on
+        sequence:
+          - service: script.powerwall_mode_grid_charge
+            data: {}
+      - conditions:
+          - condition: trigger
+            alias: Set powerwall to custom 'self powered' mode
+            id:
+              - octopus-low-rate-off
+        sequence:
+          - service: script.powerwall_mode_default
+            data: {}
+mode: single

@@ -27,6 +27,7 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 | [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled |
 | [Self powered](scripts/self_powered.yaml) | default mode, grid export disabled |
 
+(*) The [Force export](../../wiki/Custom-operation-modes#force-export) mode relies on a utility rate plan on the app with a 'sell price' at least higher than the 'buy price' at the time you wish to export. In my case the sell price is over twice as high as the buy price, which is entirely artificial. But it is the only way I found that *coerces* the Powerwall into exporting to the grid. The way to control grid exports in addition to having the utility rate plan (maybe you don't always want to export, or not for the full period in which the utility rate plan makes this favourable...) is to switch the Powerwall's 'Energy exports' between 'Everything' and 'Solar'.
 
 ### Control knobs
 

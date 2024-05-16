@@ -24,7 +24,7 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 | [Force grid charge](scripts/grid_charge.yaml) | Battery charges from the grid (1.8kW or 5kW) | `script.powerwall_mode_grid_charge` | `input_boolean.powerwall_battery_charge_rate_slow` `input_boolean.powerwall_force_full_charge` |
 | [Hold charge](scripts/hold_charge.yaml) | Battery will not discharge, but it may charge | `script.powerwall_mode_no_discharge` | |
 | [Force export\*](scripts/force_export.yaml) | Battery dumps its charge onto the grid | `script.powerwall_mode_force_export` | |
-| [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | |
+| [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | `input_number.powerwall_battery_backup_reserve_operation` |
 | [Self powered](scripts/self_powered.yaml) | default mode, grid export disabled | `script.powerwall_mode_default` | |
 
 Additionally to the scripts above, a helper selector is used to set and query which operational mode the Powerwall has been set to.
@@ -41,6 +41,12 @@ These are **input_boolean** helper entities.
 | Battery Export Charge | lets the battery dump charge onto the grid | `input_boolean.powerwall_battery_export_charge` | `script.powerwall_mode_time_based_solar` |
 | Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) | `input_boolean.powerwall_export_solar_surplus` | |
 | Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_force_full_charge` | `script.powerwall_mode_grid_charge` |
+
+### Helper controls - input_number
+
+| Control | Description | HA name | Affects |
+|---------|-------------|---------|---------|
+| Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter | `input_number.powerwall_battery_backup_reserve_operation` | `script.powerwall_mode_default` `script.powerwall_mode_time_based_solar` |
 
 ### Schedules
 

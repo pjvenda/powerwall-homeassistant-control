@@ -5,21 +5,25 @@ sequence:
       value: "{{ states('sensor.powerwall_battery_charge')|int }}"
     target:
       entity_id: number.powerwall_cloud_backup_reserve
+    alias: Set reserve to current charge value
   - service: select.select_option
     data:
       option: Self-Powered
     target:
       entity_id: select.powerwall_cloud_operation_mode
+    alias: Set mode to 'self-powered'
   - service: select.select_option
     data:
       option: "No"
     target:
       entity_id: select.powerwall_cloud_grid_charging
+    alias: Disable grid charging
   - service: select.select_option
     data:
       option: Solar
     target:
       entity_id: select.powerwall_cloud_energy_exports
+    alias: Export solar energy only
   - if:
       - condition: not
         conditions:
@@ -32,5 +36,6 @@ sequence:
           option: No discharge
         target:
           entity_id: input_select.powerwall_battery_custom_modes
+    alias: Ensure powerwall custom mode selector is correctly set
 mode: single
 icon: mdi:battery-remove

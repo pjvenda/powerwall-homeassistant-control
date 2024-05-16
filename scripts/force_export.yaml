@@ -36,6 +36,6 @@ sequence:
           option: Force Export
         target:
           entity_id: input_select.powerwall_battery_custom_modes
-    alias: "    alias: Ensure powerwall custom mode selector is correctly set"
+    alias: "Ensure powerwall custom mode selector is correctly set"
 mode: single
 icon: mdi:battery-minus-outline

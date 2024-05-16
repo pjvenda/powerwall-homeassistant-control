@@ -36,7 +36,7 @@ These are **input_boolean** helper entities.
 | Toggle | Description | HA name | Affects |
 |--------|-------------|---------|---------|
 | Charge Rate Slow | sets the battery to charge at 1.8kW from the grid | `input_boolean.powerwall_battery_charge_rate_slow` | `script.powerwall_mode_grid_charge` |
-| Battery Export Charge | lets the battery dump charge onto the grid | `input_boolean.powerwall_battery_export_charge` | |
+| Battery Export Charge | lets the battery dump charge onto the grid | `input_boolean.powerwall_battery_export_charge` | `script.powerwall_mode_time_based_solar` |
 | Export Solar Surplus | prioritises exporting of solar energy vs feeding the house (i.e. battery discharges to support house consumption) | `input_boolean.powerwall_export_solar_surplus` | |
 | Force Full Charge | ensures that battery charges fully | `input_boolean.powerwall_force_full_charge` | `script.powerwall_mode_grid_charge` |
 

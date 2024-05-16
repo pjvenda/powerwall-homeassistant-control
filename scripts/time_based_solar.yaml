@@ -1,0 +1,37 @@
+alias: Powerwall Mode Time based Solar
+sequence:
+  - service: number.set_value
+    data:
+      value: >-
+        {{ states("input_number.powerwall_battery_backup_reserve_operation")|int
+        }}
+    target:
+      entity_id: number.powerwall_cloud_backup_reserve
+  - service: select.select_option
+    data:
+      option: Time-Based Control
+    target:
+      entity_id: select.powerwall_cloud_operation_mode
+  - service: select.select_option
+    data:
+      option: "No"
+    target:
+      entity_id: select.powerwall_cloud_grid_charging
+  - service: select.select_option
+    data:
+      option: Solar
+    target:
+      entity_id: select.powerwall_cloud_energy_exports
+  - if:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Time based solar
+    then:
+      - service: input_select.select_option
+        data:
+          option: Time based solar
+        target:
+          entity_id: input_select.powerwall_battery_custom_modes
+mode: single

@@ -19,15 +19,17 @@ It is important to note that this method of control does not make the Powerwall 
 
 To achieve this, I have developed a list of **scripts** that expand what the Tesla app provides in terms of operation modes. There are individual scripts that setup the Powerwall up to operate as follows:
 
-| Mode | Description | HA name | Dependencies/control |
+| Mode | Description | HA name | Dependencies/control | 
 |------|-------------|---------|----------------------|
-| Force grid charge | Battery charges from the grid (1.8kW or 5kW) | `script.powerwall_mode_grid_charge` | `input_boolean.powerwall_battery_charge_rate_slow` `input_boolean.powerwall_force_full_charge` |
-| Hold charge | Battery will not discharge, but it may charge | `script.powerwall_mode_no_discharge` | |
-| Force export\* | Battery dumps its charge onto the grid | `script.powerwall_mode_force_export` | |
-| Time based solar | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | |
-| Self powered | default mode, grid export disabled | `script.powerwall_mode_default` | |
+| [Force grid charge](scripts/force_charge.yaml) | Battery charges from the grid (1.8kW or 5kW) | `script.powerwall_mode_grid_charge` | `input_boolean.powerwall_battery_charge_rate_slow` `input_boolean.powerwall_force_full_charge` |
+| [Hold charge](scripts/hold_charge.yaml) | Battery will not discharge, but it may charge | `script.powerwall_mode_no_discharge` | |
+| [Force export\*](scripts/force_export.yaml) | Battery dumps its charge onto the grid | `script.powerwall_mode_force_export` | |
+| [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled | `script.powerwall_mode_time_based_solar` | |
+| [Self powered](scripts/self_powered.yaml) | default mode, grid export disabled | `script.powerwall_mode_default` | |
 
 Additionally to the scripts above, a helper selector is used to set and query which operational mode the Powerwall has been set to.
+
+
 
 ### Toggle controls - input_boolean
 

@@ -23,9 +23,9 @@ To achieve this, I have developed a list of **scripts** that expand what the Tes
 |------|-------------|
 | [Force grid charge](scripts/force_charge.yaml) | Battery charges from the grid (1.8kW or 5kW) |
 | [Hold charge](scripts/hold_charge.yaml) | Battery will not discharge, but it may charge |
-| [Force export\*](scripts/force_export.yaml) | Battery dumps its charge onto the grid |
-| [Time based solar](scripts/time_based_solar.yaml) | Same as 'Time based control' on the app, with grid export disabled |
-| [Self powered](scripts/self_powered.yaml) | default mode, grid export disabled |
+| [Force export\*](scripts/force_export.yaml) | Battery is allowed to export to the grid in certain conditions |
+| [Time based solar](scripts/time_based_solar.yaml) | Operates in the same way as 'Time based control' on the app |
+| [Self powered](scripts/self_powered.yaml) | Operates in the same way as 'Self-Powered' on the app |
 
 (*) The [Force export](../../wiki/Custom-operation-modes#force-export) mode relies on a utility rate plan on the app with a 'sell price' at least higher than the 'buy price' at the time you wish to export. In my case the sell price is over twice as high as the buy price, which is entirely artificial. But it is the only way I found that *coerces* the Powerwall into exporting to the grid. The way to control grid exports in addition to having the utility rate plan (maybe you don't always want to export, or not for the full period in which the utility rate plan makes this favourable...) is to switch the Powerwall's 'Energy exports' between 'Everything' and 'Solar'.
 
@@ -41,5 +41,7 @@ More detailed info can be found in the wiki [Controls](../../wiki/Controls).
 | Force Full Charge | ensures that battery charges fully |
 | Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter |
 | Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts |
+| Low Rate Schedule | Schedule that defines time periods when provider tariff is cheap or expensive |
+| Battery Export Schedule | Time period in which Powerwall is to export to the grid |
 
 (*) Just like the 'Force Export' mode, so does the 'Export Solar Surplus' control rely on the 'Utility Rate Plan' being setup with a higher 'sell price' than the 'buy price'. Otherwise the Powerwall will prioritise consuming the solar power generated rather than exporting it.

@@ -1,0 +1,55 @@
+alias: Powerwall Mode Grid Charge
+sequence:
+  - service: number.set_value
+    data:
+      value: 100
+    target:
+      entity_id: number.powerwall_cloud_backup_reserve
+    alias: Set reserve to 100%
+  - service: select.select_option
+    data:
+      option: "Yes"
+    target:
+      entity_id: select.powerwall_cloud_grid_charging
+    alias: Enable grid charging
+  - alias: Check 'slow charge' toogle
+    if:
+      - condition: state
+        entity_id: input_boolean.powerwall_battery_charge_rate_slow
+        state: "on"
+        alias: Slow charging is enabled
+    then:
+      - alias: "Set powerwall mode: Self Powered"
+        service: select.select_option
+        data:
+          option: Self-Powered
+        target:
+          entity_id: select.powerwall_cloud_operation_mode
+    else:
+      - service: select.select_option
+        data:
+          option: Time-Based Control
+        target:
+          entity_id: select.powerwall_cloud_operation_mode
+        alias: "Set powerwall mode: Time-based control"
+  - service: select.select_option
+    data:
+      option: Solar
+    target:
+      entity_id: select.powerwall_cloud_energy_exports
+    alias: (default) set exports to 'solar'
+  - if:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: input_select.powerwall_battery_custom_modes
+            state: Grid Charge
+    then:
+      - service: input_select.select_option
+        data:
+          option: Grid Charge
+        target:
+          entity_id: input_select.powerwall_battery_custom_modes
+    alias: Ensure powerwall custom mode selector is correctly set
+mode: single
+icon: mdi:battery-plus

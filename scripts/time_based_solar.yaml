@@ -7,21 +7,27 @@ sequence:
         }}
     target:
       entity_id: number.powerwall_cloud_backup_reserve
+    alias: >-
+      Set reserve to helper value
+      input_number.powerwall_battery_backup_reserve_operation
   - service: select.select_option
     data:
       option: Time-Based Control
     target:
       entity_id: select.powerwall_cloud_operation_mode
+    alias: Set mode to 'time-based control'
   - service: select.select_option
     data:
       option: "No"
     target:
       entity_id: select.powerwall_cloud_grid_charging
+    alias: Disable grid charging
   - service: select.select_option
     data:
       option: Solar
     target:
       entity_id: select.powerwall_cloud_energy_exports
+    alias: Export set to 'solar' only
   - if:
       - condition: not
         conditions:
@@ -34,4 +40,5 @@ sequence:
           option: Time based solar
         target:
           entity_id: input_select.powerwall_battery_custom_modes
+    alias: Ensure powerwall custom mode selector is correctly set
 mode: single

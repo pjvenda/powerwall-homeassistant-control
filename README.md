@@ -41,7 +41,7 @@ More detailed info can be found in the wiki [Controls](../../wiki/Controls).
 | Force Full Charge | ensures that battery charges fully |
 | Battery reserve percentage | Sets the reserve percentage on scripts that require manipulating this parameter |
 | Battery Custom modes | Displays or selects the custom mode of operation, as determined by the mode scripts |
-| Low Rate Schedule | Schedule that defines time periods when provider tariff is cheap or expensive |
+| Low Rate Schedule | Schedule that defines time periods when provider tariff is cheap or expensive (offpeak or peak, respectively) |
 | Battery Export Schedule | Time period in which Powerwall is to export to the grid |
 
 (*) Just like the 'Force Export' mode, so does the 'Export Solar Surplus' control rely on the 'Utility Rate Plan' being setup with a higher 'sell price' than the 'buy price'. Otherwise the Powerwall will prioritise consuming the solar power generated rather than exporting it.
